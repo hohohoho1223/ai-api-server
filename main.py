@@ -3,9 +3,10 @@ from typing import Union
 from fastapi import FastAPI
 
 import model # model.py를 가져온다
+
 model = model.AndModel() # 그안에 있는 AndModel클래스의 인스턴스를 생성한다
 
-
+#API 서버 생성
 app = FastAPI()
 
 
@@ -26,7 +27,7 @@ def predict(left: int, right: int):
     result = model.predict([left,right])
     return {"result": result}
 
-@app.get("/train")
+@app.post("/train") # 생성 기능은 POST로 진행
 def train():
     model.train()
     return {"result": "okay!"}
