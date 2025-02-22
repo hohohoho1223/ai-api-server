@@ -1,10 +1,14 @@
 POST https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/train
-
+###
 # POST를 train으로
 GET https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/predict/left/0/right/0
-
+#0,0인 경우
+###
 GET https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/predict/left/1/right/0
-
+#1,0인경우
+###
 GET https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/predict/left/0/right/1
-
-GET https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/predict/left/1/right/1xq
+#0,1 인경우
+###
+GET https://crispy-guacamole-g4x7r5r9qw6wh9697-8000.app.github.dev/predict/left/1/right/1
+#1,1 인경우
