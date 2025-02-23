@@ -51,25 +51,23 @@ def train_or():
 
 @app.post("/train/xor")  # XOR 모델 학습 엔드포인트
 def train_xor():
-    xor_model.train()
-    # 모델 저장
-    torch.save(xor_model.state_dict(), 'xor_model.pth')  # 학습 후 모델 저장
+    xor_model.train() # train 메소드랑 다르기에 이름을 따로 지정...
     return {"result": "XOR model training is okay!!!!"}
 
-@app.post("/train/all")  # 모든 모델 학습
-def train_all():
-    and_model.train()
-    or_model.train()
-    xor_model.train_model()
+# @app.post("/train/all")  # 모든 모델 학습
+# def train_all():
+#     and_model.train()
+#     or_model.train()
+#     xor_model.train_model()
 
-    and_model.save_model('and_model.pkl')
-    or_model.save_model('or_model.pkl')
-    torch.save(xor_model.state_dict(), 'xor_model.pth')  # XOR 모델 저장
+#     and_model.save_model('and_model.pkl')
+#     or_model.save_model('or_model.pkl')
+#     torch.save(xor_model.state_dict(), 'xor_model.pth')  # XOR 모델 저장
 
-    return {
-        "result": {
-            "and": "and_train is okay!",
-            "or": "or_train is okay!",
-            "xor": "xor_train is okay!"
-        }
-    }
+#     return {
+#         "result": {
+#             "and": "and_train is okay!",
+#             "or": "or_train is okay!",
+#             "xor": "xor_train is okay!"
+#         }
+#     }

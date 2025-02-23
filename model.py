@@ -91,7 +91,7 @@ class XorModel(nn.Module):
         x = self.sigmoid(self.fc2(x))
         return x
 
-    def model(self, epochs=10000):
+    def train(self, epochs=10000):
         xor_inputs = torch.tensor([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=torch.float32)
         xor_outputs = torch.tensor([[0], [1], [1], [0]], dtype=torch.float32)
 
@@ -107,15 +107,15 @@ class XorModel(nn.Module):
 
             if epoch % 1000 == 0:
                 print(f'Epoch [{epoch}/{epochs}], Loss: {loss.item():.4f}')
-        # 예측
-        with torch.no_grad():
-            print("XOR Predictions:")
-            xor_inputs = torch.tensor([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=torch.float32)
-            for i in range(4):
-                print(f"Input: {xor_inputs[i]}, Prediction: {xor_model(xor_inputs[i]).item():.4f}")
+    # 예측
+    def predict(self, input_data):  # 예측 메소드 추가
+        with torch.no_grad(): #PyTorch의 자동 미분 기능이 비활성화 : 예측할 때는 그래디언트 계산이 필요하지 않기 때문
+            input_tensor = torch.tensor(input_data, dtype=torch.float32)
+            prediction = self(input_tensor).item()  # 예측값 반환(item()함수 : tensor값을 파이썬의 float형식으로 반환
+            return 1 if prediction >= 0.5 else 0
+        
 
-
-if __name__ == "__main__":
+if __name__ == "__main__": #해당 모듈에서 직접 실행될때를 명시함..!
     # AND 모델 학습
     and_model = AndModel()
     and_model.train()
@@ -129,4 +129,6 @@ if __name__ == "__main__":
     # XOR 모델 학습
     xor_model = XorModel()
     xor_model.train()
+    torch.save(xor_model.state_dict(), 'xor_model.pth')  # 학습 후 모델 저장
+    
 
